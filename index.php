@@ -22,7 +22,7 @@ include("header.php");
         else
         {
             echo("
-                <a href='commentaire.php'><h1 style='text-align: center; margin-top: 50px;'>Dites quelque chose de gentil, ".$_SESSION["name"]." !</h1></a>
+                <a href='commentaire.php'><h1 style='text-align: center; margin-top: 50px;'>Dites quelque chose de gentil, ".$_SESSION["login"]." !</h1></a>
             ");
         }
         ?>

@@ -1,26 +1,9 @@
 <?php 
 session_start();
 $canConnect = false; 
+
+include("header.php");
 ?>
-
-<html>
-    <head>
-        <title>Bouff' @ Home</title>
-        <meta charset="utf-8">
-        <link href="style.css" rel="stylesheet">
-    </head>
-
-<body>
-
-<header>
-    <div id="links">
-        <a href="index.php"><h1>Bouff' @ Home</h1></a> 
-        <div id="profile-links">
-            <a href="inscription.php"><h2>S'inscrire</h2></a>
-            <a href="connexion.php"><h2>Se connecter</h2></a>
-        </div>
-    </div>
-</header>
 
     <div id="welcome">
         <h1>Connectez-vous à Bouff' @ Home !</h1>
@@ -64,17 +47,16 @@ $canConnect = false;
             
         <input type="submit" value="Je me connecte !" class="btn">
     </form>
-
     </div>
-</body>
-</html>
 
 <?php
+include("footer.php");
+
 function checkLogin(string $_login, string $_password)
 {
     if($_login != "" && $_password != "") // si les champs entrés ne sont pas vides
     {
-        $db = mysqli_connect("localhost", "thibaultkine", "nessias84", "thibault-kine_database"); // database sur plesk
+        $db = mysqli_connect("localhost", "root", "", "livreor");
 
         $query = "SELECT `login`, `password` FROM `utilisateurs` WHERE '$_login'=`login` AND '$_password'=`password`";
         $result = mysqli_query($db, $query);
@@ -87,8 +69,6 @@ function checkLogin(string $_login, string $_password)
 
             $_SESSION["login"] = $row["login"];
             $_SESSION["password"] = $row["password"];
-            $_SESSION["name"] = $row["prenom"];
-            $_SESSION["lastname"] = $row["nom"];
             $_SESSION["id"] = $row["id"];
 
             header("location:profil.php");

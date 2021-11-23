@@ -3,6 +3,7 @@
         <title>Golden Book</title>
         <meta charset="utf-8">
         <link href="style.css" rel="stylesheet">
+        <link href="livre-or.css" ref="stylesheet">
     </head>
 
 <body>
@@ -19,11 +20,14 @@
             <?php
             if(!empty($_SESSION))
             {
+                echo "<a href='commentaire.php' style='background-color: yellow; color: grey;'>Poster un commentaire</a>";
+                echo "<a href='livre-or.php'>Accéder au livre d'or</a>";
                 echo "<a href='profil.php'>Profil</a>";
                 echo "<a href='logout.php'>Se déconnecter</a>";
             }
             else
             {
+                echo "<a href='livre-or.php'>Accéder au livre d'or</a>";
                 echo "<a href='inscription.php'>S'inscrire</a>";
                 echo "<a  href='connexion.php'>Se connecter</a>";
             }

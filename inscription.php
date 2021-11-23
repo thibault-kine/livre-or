@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $canRegister = false;
 
 include("header.php");
@@ -36,10 +37,7 @@ include("header.php");
         <?php
         if($_POST != null)
         {
-            if(
-                $_POST["name"] != "" && $_POST["lastname"] != "" &&
-                $_POST["login"] != "" && $_POST["p1"] != "" && $_POST["p2"] != ""
-            )
+            if($_POST["login"] != "" && $_POST["p1"] != "" && $_POST["p2"] != "")
             {
                 if($_POST["p1"] == $_POST["p2"])
                 {
@@ -61,19 +59,15 @@ include("footer.php");
 
 if($canRegister)
 {
-    $_name = $_POST["name"];
-    $_lastname = $_POST["lastname"];
     $_login = $_POST["login"];
     $_password = $_POST["p1"];
 
-    $_SESSION["name"] = $_name;
-    $_SESSION["lastname"] = $_lastname;
     $_SESSION["login"] = $_login;
     $_SESSION["password"] = $_password;
 
-    $bdd = mysqli_connect("localhost", "thibaultkine", "nessias84", "thibault-kine_database"); // database sur plesk
+    $bdd = mysqli_connect("localhost", "root", "", "livreor");
 
-    $query = "INSERT INTO `utilisateurs`(`prenom`, `nom`, `login`, `password`) VALUES ('$_name', '$_lastname', '$_login', '$_password');";
+    $query = "INSERT INTO `utilisateurs`(`login`, `password`) VALUES ('$_login', '$_password');";
 
     $inscription = mysqli_query($bdd, $query);
 
